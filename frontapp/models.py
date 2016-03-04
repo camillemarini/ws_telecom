@@ -43,3 +43,6 @@ class Probicipant(models.Model):
     python_level = models.CharField(max_length=3,
                                     choices=LEVEL_CHOICES,
                                     default='BEG')
+
+    def __unicode__(self):
+        return self.first_name, self.last_name
