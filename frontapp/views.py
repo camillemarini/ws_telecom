@@ -27,8 +27,11 @@ def registration(request):
                        u'Due to limited space, we can accept 40 participants. '
                        u'Notification of acceptance will be sent by %s. ') \
                 % (info_registration)
-            send_mail(subject, message, settings.EMAIL_HOST_USER,
-                      [email], fail_silently=False)
+            try:
+                send_mail(subject, message, settings.EMAIL_HOST_USER,
+                          [email], fail_silently=False)
+            except:
+                pass
             return redirect("/registration_ok")
     else:
         form = ProbicipantForm()
