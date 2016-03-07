@@ -12,6 +12,11 @@ def index(request):
                   {'deadline_registration': deadline_registration})
 
 
+def setup(request):
+    return render(request, 'frontapp/requirements.html',
+                  {'ola': 'ola'})
+
+
 def registration(request):
     if request.method == 'POST':
         form = ProbicipantForm(request.POST)
