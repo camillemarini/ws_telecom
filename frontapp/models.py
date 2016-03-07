@@ -44,5 +44,13 @@ class Probicipant(models.Model):
                                     choices=LEVEL_CHOICES,
                                     default='BEG')
 
+    DIET_CHOICES = (
+        ('OMN', 'Omnivore'),
+        ('VEG', 'Vegetarian'),
+    )
+    dietary = models.CharField('Dietary restrictions', max_length=3,
+                               choices=DIET_CHOICES,
+                               default='OMN')
+
     def __unicode__(self):
         return self.first_name, self.last_name
