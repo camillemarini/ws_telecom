@@ -1,0 +1,56 @@
+{% extends "base.html"  %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="col-md-12 panel-warning">
+        <div class="content-box-header panel-heading">
+            <div class="panel-title ">List of applicants</div>
+        </div>
+        <div class="content-box-large box-with-header">
+            <table id="table_probicipants" class="table table-bordered table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Affiliation</th>
+                        <th>Position</th>
+                        <th>Research Domain</th>
+                        <th>Programming Languages</th>
+                        <th>Python level</th>
+                        <th>Motivations</th>
+                        <th>Votes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for probicipant in list_probicipants %}
+                    <tr>
+                        <td>{{ probicipant.first_name }}, {{ probicipant.last_name }}</td>
+                        <td>{{ probicipant.affiliation }}</td>
+                        <td>{{ probicipant.get_position_display }}
+                            {{ probicipant.position_other }}
+                            {{ probicipant.doctoral_school }}</td>
+                        <td>{{ probicipant.research_domain}}</td>
+                        <td>{{ probicipant.programming_languages }}</td>
+                        <td>{{ probicipant.python_level }}</td>
+                        <td>{{ probicipant.motivations |linebreaks}}</td>
+                        <td>{{ probicipant.votes.count }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block scripts %}
+
+<script>
+$(document).ready(function(){
+    $('#table_probicipants').dataTable();
+});
+</script>
+
+{% endblock scripts %}
