@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
+from frontapp.models import Probicipant
 from frontapp.forms import ProbicipantForm
 
 deadline_registration = 'March 18'
@@ -47,3 +48,19 @@ def registration(request):
 def registration_ok(request):
     return render(request, 'frontapp/registration_ok.html',
                   {'info_registration': info_registration})
+
+def registration_admin(request):
+    context = {'list_probicipants': Probicipant.objects.all()}
+    return render(request, 'frontapp/registration_admin.html',
+                  context)
+
+
+def vote_up_down_probicipant(request, *args, **kwargs):
+    prob_id = kwargs['probicipant_id']
+    prob = Probicipant.objects.get(pk=prob_id)
+    # make sure the user has already voted
+    if prob.votes.exists(request.user):
+        prob.votes.down(request.user)
+    else:  # if he has not already voted
+        prob.votes.up(request.user)
+    return redirect('/')

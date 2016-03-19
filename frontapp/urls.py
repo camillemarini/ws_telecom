@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^setup$', views.setup, name='setup'),
     url(r'^registration$', views.registration, name='registration'),
     url(r'^registration_ok$', views.registration_ok, name='registration_ok'),
+    url(r'^registration_admin$', views.registration_admin, name='admin'),
 ]
