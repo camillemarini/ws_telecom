@@ -34,7 +34,9 @@
                         <td>{{ probicipant.programming_languages }}</td>
                         <td>{{ probicipant.get_python_level_display }}</td>
                         <td>{{ probicipant.motivations |linebreaks}}</td>
-                        <td> probicipant.votes.count </td>
+                        <td>{{ probicipant.votes.count }}
+                            <input type="button" class="btn btn-warning" onclick="location.href='{% url 'frontapp:vote_up_down_probicipant' probicipant.id %}';" value="+1" />
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
