@@ -32,9 +32,9 @@
                             {{ probicipant.doctoral_school }}</td>
                         <td>{{ probicipant.research_domain}}</td>
                         <td>{{ probicipant.programming_languages }}</td>
-                        <td>{{ probicipant.python_level }}</td>
+                        <td>{{ probicipant.get_python_level_display }}</td>
                         <td>{{ probicipant.motivations |linebreaks}}</td>
-                        <td>{{ probicipant.votes.count }}</td>
+                        <td> probicipant.votes.count </td>
                     </tr>
                 {% endfor %}
                 </tbody>
