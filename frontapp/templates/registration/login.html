@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Oups, votre username et mot de passe ne se correspondent pas. Essayez de nouveau!</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Désolé, vous n'avez pas acces à cette page.</p>
+    {% else %}
+    <p>"Loggez" vous svp!</p>
+    {% endif %}
+{% endif %}
+
+<h1 class="page-header">Connection</h1>
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <form method="post" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        <table>
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+        </table>
+
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+
+        {# Assumes you setup the password_reset view in your URLconf #}
+        <p><a href="{% url 'password_reset_recover' %}">Vous avez perdu votre mot de passe?</a></p>
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+
+
+{% endblock %}
