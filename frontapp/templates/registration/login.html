@@ -5,14 +5,14 @@
 {% block content %}
 
 {% if form.errors %}
-<p>Oups, votre username et mot de passe ne se correspondent pas. Essayez de nouveau!</p>
+<p>Oups, your username and password do not match. Try again!</p>
 {% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p>Désolé, vous n'avez pas acces à cette page.</p>
+    <p>Sorry, you cannot access this page.</p>
     {% else %}
-    <p>"Loggez" vous svp!</p>
+    <p>Log in!</p>
     {% endif %}
 {% endif %}
 
@@ -40,7 +40,7 @@
         </form>
 
         {# Assumes you setup the password_reset view in your URLconf #}
-        <p><a href="{% url 'password_reset_recover' %}">Vous avez perdu votre mot de passe?</a></p>
+        <p><a href="{% url 'password_reset_recover' %}">Have you lost your password?</a></p>
     </div>
     <div class="col-md-4">
     </div>
