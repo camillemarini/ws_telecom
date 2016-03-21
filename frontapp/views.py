@@ -66,4 +66,4 @@ def vote_up_down_probicipant(request, *args, **kwargs):
         prob.votes.down(request.user)
     else:  # if he has not already voted
         prob.votes.up(request.user)
-    return redirect('/')
+    return redirect('/registration_admin')
