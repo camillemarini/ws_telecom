@@ -9,6 +9,10 @@
             <div class="panel-title ">List of applicants</div>
         </div>
         <div class="content-box-large box-with-header">
+            You can <b>vote for the participation of an applicant</b>. You can vote for as many applicants as you want.<br>
+            Applicants with most votes are selected to participate to the workshop. <br>
+            <b>To vote for a participation: click on the orange button, the button becomes blue. 
+            To remove your vote: click on the blue button.</b><br><br> 
             <table id="table_probicipants" class="table table-bordered table-striped table-condensed">
                 <thead>
                     <tr>
@@ -23,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for probicipant in list_probicipants %}
+                {% for probicipant, has_voted in list_probicipants %}
                     <tr>
                         <td>{{ probicipant.first_name }}, {{ probicipant.last_name }}</td>
                         <td>{{ probicipant.affiliation }}</td>
@@ -34,14 +38,17 @@
                         <td>{{ probicipant.programming_languages }}</td>
                         <td>{{ probicipant.get_python_level_display }}</td>
                         <td>{{ probicipant.motivations |linebreaks}}</td>
-                        <td>{{ probicipant.votes.count }}
+                        <td>{{ probicipant.votes.count }}<br>
+                            {% if has_voted %}
+                            <input type="button" class="btn btn-info" onclick="location.href='{% url 'frontapp:vote_up_down_probicipant' probicipant.id %}';" value="-1" />
+                            {% else %}
                             <input type="button" class="btn btn-warning" onclick="location.href='{% url 'frontapp:vote_up_down_probicipant' probicipant.id %}';" value="+1" />
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
-
         </div>
     </div>
 

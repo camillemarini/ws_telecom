@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
@@ -51,9 +51,12 @@ def registration_ok(request):
     return render(request, 'frontapp/registration_ok.html',
                   {'info_registration': info_registration})
 
+
 @login_required
 def registration_admin(request):
-    context = {'list_probicipants': Probicipant.objects.all()}
+    list_probicipants = Probicipant.objects.all()
+    list_prob = [[p, p.votes.exists(request.user)] for p in list_probicipants]
+    context = {'list_probicipants': list_prob}
     return render(request, 'frontapp/registration_admin.html',
                   context)
 
