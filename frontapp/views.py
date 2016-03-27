@@ -21,6 +21,7 @@ def setup(request):
 
 
 def registration(request):
+    """
     if request.method == 'POST':
         form = ProbicipantForm(request.POST)
         if form.is_valid():
@@ -45,6 +46,9 @@ def registration(request):
         form = ProbicipantForm()
 
     return render(request, 'frontapp/registration.html', {'form': form})
+    """
+    return render(request, 'frontapp/registration_closed.html',
+                  {'info_registration': info_registration})
 
 
 def registration_ok(request):
