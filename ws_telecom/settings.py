@@ -125,7 +125,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
 # Login
-LOGIN_REDIRECT_URL = 'frontapp:index'
+LOGIN_REDIRECT_URL = 'frontapp:registration_admin'
 
 # Emails
 

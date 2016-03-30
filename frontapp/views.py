@@ -65,6 +65,7 @@ def registration_admin(request):
                   context)
 
 
+@login_required
 def vote_up_down_probicipant(request, *args, **kwargs):
     prob_id = kwargs['probicipant_id']
     prob = Probicipant.objects.get(pk=prob_id)
