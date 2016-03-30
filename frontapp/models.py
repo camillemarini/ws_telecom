@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from vote.managers import VotableManager
 
 class Probicipant(models.Model):
     """
@@ -51,6 +51,7 @@ class Probicipant(models.Model):
     dietary = models.CharField('Dietary restrictions', max_length=3,
                                choices=DIET_CHOICES,
                                default='OMN')
+    votes = VotableManager()
 
     def __unicode__(self):
-        return self.first_name, self.last_name
+        return (self.first_name + ' ' + self.last_name)

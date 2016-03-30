@@ -19,4 +19,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('frontapp.urls', namespace='frontapp')),
+    url(r'^accounts/', include('django.contrib.auth.urls',
+                               namespace='accounts')),
+    url(r'^accounts-reset/', include('password_reset.urls')),
 ]
