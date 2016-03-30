@@ -26,7 +26,7 @@ class Command(BaseCommand):
         user_csv = options['user_csv']
 
         # Just alphanumeric characters
-        chars = string.letters + string.digits
+        chars = string.ascii_letters + string.digits
         pwd_size = 8
 
         # Read csv file
@@ -35,13 +35,13 @@ class Command(BaseCommand):
 
             for i, row in enumerate(reader):
                 row = row[0].split(' ')
-                print row
+                print(row)
                 username = "_".join(row[:2])
                 username = username.replace(" ", "_")
                 email = row[2]
                 password = ''.join((random.choice(chars))
                                    for x in range(pwd_size))
-                print username, password
+                print(username + ' ' + password)
                 try:
                     User.objects.create_user(username, email, password)
                     if options['email']:
@@ -52,9 +52,8 @@ class Command(BaseCommand):
                                    u'next=/registration_admin \n'
                                    u'Your login is %s and your password is %s.'
                                    u'\nCheers') % (username, password)
-                        print message
+                        print(message)
                         send_mail(subject, message, settings.EMAIL_HOST_USER,
                                   [email], fail_silently=False)
-                except Exception, e:
+                except:
                     print('!!!!!!!!! Problem when creating User %s' % username)
-                    raise e
