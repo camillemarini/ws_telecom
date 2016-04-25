@@ -20,6 +20,11 @@ def setup(request):
                   {'ola': 'ola'})
 
 
+def materials(request):
+    return render(request, 'frontapp/materials.html',
+                  {'ola': 'ola'})
+
+
 def registration(request):
     """
     if request.method == 'POST':
