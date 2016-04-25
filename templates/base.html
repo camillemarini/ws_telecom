@@ -27,9 +27,16 @@
 	              </div>
 	           </div>
 	           <div class="col-md-2">
-                    <div class="logo">
-                        <center><font color="white">Workshop <br>Telecom Paris</font> <br>
-                        <font color="white">28-29, April 2016</font></center>
+                   <div class="logo">
+                       <center>
+                           {% if user.is_authenticated %}
+                            <br>
+                            <a href="{% url 'accounts:logout' %}?next=/accounts/login" class="btn btn-default">Logout</a>
+                           {% else %}
+                            <font color="white">Workshop <br>Telecom Paris</font> <br>
+                            <font color="white">28-29, April 2016</font>
+                           {% endif %}
+                       </center>
                    </div>
 	              <!--
                   <div class="navbar navbar-inverse" role="banner">
@@ -59,7 +66,9 @@
                     <!-- Main menu -->
                     <li class="current"><a href="{% url 'frontapp:index' %}"><i class="glyphicon glyphicon-home"></i> General Information</a></li>
                     <li><a href="{% url 'frontapp:registration' %}"><i class="glyphicon glyphicon-registration-mark"></i> Registration</a></li>
-                    <li><a href="{% url 'frontapp:setup' %}"><i class="glyphicon glyphicon-cog"></i> Setup</a></li>
+                    <li><a href="{% url 'frontapp:setup' %}"><i class="glyphicon glyphicon-flag"></i> Setup</a></li>
+                    <li><a href="{% url 'frontapp:materials' %}"><i class="glyphicon glyphicon-book"></i> Material</a></li>
+                    <li><a href="{% url 'frontapp:registration_admin' %}"><i class="glyphicon glyphicon-cog"></i> Admin</a></li>
                     <!--<li class="submenu">
                          <a href="#">
                             <i class="glyphicon glyphicon-list"></i> Pages
